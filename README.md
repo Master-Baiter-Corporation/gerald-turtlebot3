@@ -74,7 +74,7 @@ $> cd ~/ros2_ws
 $> colcon build
 ... (this may take a while) ...
 $> echo 'source ~/ros2_ws/install/setup.bash' >> ~/.bashrc
-$> echo 'export TURTLEBOT3_MODEL=burger’ >> ~/.bashrc
+$> echo 'export TURTLEBOT3_MODEL=burger' >> ~/.bashrc
 $ source ~/.bashrc
 ```
 - Finally, clone this repo:
