@@ -217,43 +217,98 @@
     </inertial>
   </link>
 
-  <link name="D435i_camera">
+  <link name="support_bucket">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      <geometry>
+        <mesh filename="package://turtlebot3_descriptions/meshes/actuators/bucket/support_bucket.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="dark"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.01 0.00 0"/>
+      <geometry>
+        <box size="0.055 0.04 0.03"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-5.97496343 3.58970341 1.58703942"/>
+      <mass value="0.07290000"/>
+      <inertia ixx="28.27111577" ixy="0.0" ixz="0.0" iyy="21.66454804" iyz="0.0" izz="42.87492870"/>
+    </inertial>
+  </link>
+  <joint name="support_bucket_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="support_bucket"/>
+    <origin rpy="0 0 0" xyz="-0.022 0.085 0.137"/>
+  </joint>
+
+  <link name="bucket">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.0"/>
+      <geometry>
+        <mesh filename="package://turtlebot3_descriptions/meshes/actuators/bucket/bucket.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="dark"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.04 0.0 0.0018"/>
+      <geometry>
+        <box size="0.11 0.05 0.02"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="50.92796232 -0.32769252 0.06923464"/>
+      <mass value="0.00800000"/>
+      <inertia ixx="0.80771131" ixy="0.0" ixz="0.0" iyy="5.73735257" iyz="0.0" izz="5.97873047"/>
+    </inertial>
+  </link>
+  <joint name="bucket_joint" type="revolute">
+    <parent link="support_bucket"/>
+    <child link="bucket"/>
+    <origin rpy="0 0 3.14" xyz="0.0 0.033 0.0"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="1000.0" lower="-1.0" upper="0.0" velocity="10.0"/>    
+  </joint>
+
+  <link name="oak_d_pro_camera">
     <visual name="meshes">
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
       <geometry>
-          <mesh filename="package://turtlebot3_descriptions/meshes/sensors/intel_d435i.dae" scale="1.0 1.0 1.0"/>
+          <mesh filename="package://turtlebot3_descriptions/meshes/sensors/OAK-D-PRO.stl" scale="1.0 1.0 1.0"/>
       </geometry>
+      <material name="dark"/>
     </visual>
     <inertial>
-      <origin xyz="0.003 -0.003 -0.001"/>
-      <mass value="0.07200000"/>
-      <inertia ixx="0.00004391" ixy="0.00000029" ixz="0.00000001" iyy="0.00000658" iyz="-0.00000001" izz="0.00004427"/>
-    </inertial>   
+    <origin xyz="0.0 0.0 0.0"/>
+    <mass value="0.09100000"/>
+    <inertia ixx="0.00000975" ixy="0.0" ixz="0.0" iyy="0.00007087" iyz="0.0" izz="0.00007312"/>
+    </inertial>  
     <collision>
-      <origin rpy="0.0 0.0 0.0" xyz="0 -0.0025 0"/>
+      <origin rpy="0.0 0.0 0.0" xyz="0 -0.005 -0.01"/>
       <geometry>
-        <box size="0.028 0.09 0.02"/>
+        <box size="0.1 0.03 0.02"/>
       </geometry>
     </collision>             
   </link>
-  <joint name="joint_d435i_camera" type="fixed">
-    <parent link="support_cameras_a_link"/>
-    <child link="D435i_camera"/>
-    <origin xyz="0.0613 0.0 0.028" rpy="0.0 0.0 0.0"/> 
+  <joint name="joint_oak_d_pro_camera" type="fixed">
+    <parent link="support_cameras_b_link"/>
+    <child link="oak_d_pro_camera"/>
+    <origin xyz="0.0315 -0.0015 -0.03" rpy="3.14 0 1.57"/> 
   </joint>
   
-  <link name="D435i_color_optical_frame"/>   
-  <joint name="joint_d435i_color_optical_frame" type="fixed">
-    <parent link="D435i_camera"/>
-    <child link="D435i_color_optical_frame"/>
-    <origin xyz="0.0 0.0 0.0" rpy="-1.5708 0.0 -1.5708"/> 
+  <link name="oak_d_pro_color_optical_frame"/>   
+  <joint name="joint_oak_d_pro_color_optical_frame" type="fixed">
+    <parent link="oak_d_pro_camera"/>
+    <child link="oak_d_pro_color_optical_frame"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/> 
   </joint>
   
-  <link name="D435i_depth_optical_frame"/>   
-  <joint name="joint_d435i_depth_optical_frame" type="fixed">
-    <parent link="D435i_camera"/>
-    <child link="D435i_depth_optical_frame"/>
-    <origin xyz="0.0 0.0 0.0" rpy="-1.5708 0.0 -1.5708"/> 
+  <link name="oak_d_pro_depth_optical_frame"/>   
+  <joint name="joint_oak_d_pro_depth_optical_frame" type="fixed">
+    <parent link="oak_d_pro_camera"/>
+    <child link="oak_d_pro_depth_optical_frame"/>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/> 
   </joint>
 
 </robot>
